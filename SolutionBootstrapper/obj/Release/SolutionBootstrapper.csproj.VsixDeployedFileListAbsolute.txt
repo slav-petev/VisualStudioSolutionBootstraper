@@ -1,0 +1,4 @@
+C:\Users\Slav Petkov\AppData\Local\Microsoft\VisualStudio\14.0Exp\Extensions\Slav Petkov\SolutionBootstrapper\1.0\\SolutionBootstrapper.dll
+C:\Users\Slav Petkov\AppData\Local\Microsoft\VisualStudio\14.0Exp\Extensions\Slav Petkov\SolutionBootstrapper\1.0\\SolutionBootstrapper.pdb
+C:\Users\Slav Petkov\AppData\Local\Microsoft\VisualStudio\14.0Exp\Extensions\Slav Petkov\SolutionBootstrapper\1.0\\SolutionBootstrapper.pkgdef
+C:\Users\Slav Petkov\AppData\Local\Microsoft\VisualStudio\14.0Exp\Extensions\Slav Petkov\SolutionBootstrapper\1.0\\extension.vsixmanifest
