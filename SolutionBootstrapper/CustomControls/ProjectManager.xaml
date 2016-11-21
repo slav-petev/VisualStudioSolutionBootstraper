@@ -1,0 +1,118 @@
+﻿<UserControl x:Class="SolutionBootstrapper.CustomControls.ProjectManager"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:SolutionBootstrapper.CustomControls"
+             xmlns:CustomControls="clr-namespace:SolutionBootstrapper.CustomControls"
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="300">
+
+    <UserControl.Resources>
+        <DataTemplate x:Key="projectTemplate">
+            <Grid>
+                <StackPanel x:Name="normalPanel"
+                            Orientation="Horizontal">
+                    <TextBlock Text="{Binding FullName}"/>
+                    <TextBlock Margin="20, 0, 0, 0">
+                    <Hyperlink Command="{Binding DataContext.EditProject, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=UserControl}}"
+                               CommandParameter="{Binding ProjectId}">
+                        Edit
+                    </Hyperlink>
+                    </TextBlock>
+                </StackPanel>
+
+                <StackPanel x:Name="editPanel"
+                            Orientation="Horizontal"
+                            FocusManager.FocusedElement="{Binding ElementName=tbxProjectName}">
+                    <TextBlock Text="Name"/>
+                    <TextBox x:Name="tbxProjectName" 
+                             Text="{Binding Name}"
+                             Width="100"
+                             Margin="10, 0, 0, 0"/>
+                    <TextBlock Text="Number"/>
+                    <TextBox Text="{Binding Number}"
+                         Width="100"
+                         Margin="10, 0, 0, 0"/>
+                    <TextBlock Margin="10, 0, 0, 0">
+                    <Hyperlink Command="{Binding DataContext.SaveChanges, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=UserControl}}"
+                               CommandParameter="{Binding ProjectId}">
+                        Done
+                    </Hyperlink>
+                    </TextBlock>
+                </StackPanel>
+            </Grid>
+
+            <DataTemplate.Triggers>
+                <DataTrigger Binding="{Binding State}"
+                             Value="Normal">
+                    <Setter TargetName="editPanel"
+                            Property="Visibility"
+                            Value="Collapsed" />
+                </DataTrigger>
+
+                <DataTrigger Binding="{Binding State}"
+                             Value="Edit">
+                    <Setter TargetName="normalPanel"
+                            Property="Visibility"
+                            Value="Collapsed" />
+                </DataTrigger>
+            </DataTemplate.Triggers>
+        </DataTemplate>
+        
+        <DataTemplate x:Key="editProjectTemplate">
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="Name"/>
+                <TextBox Text="{Binding Name}"
+                         Width="100"
+                         Margin="10, 0, 0, 0"/>
+                <TextBlock Text="Number"/>
+                <TextBox Text="{Binding Number}"
+                         Width="100"
+                         Margin="10, 0, 0, 0"/>
+                <TextBlock Margin="10, 0, 0, 0">
+                    <Hyperlink Command="{Binding DataContext.SaveChanges, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=UserControl}}"
+                               CommandParameter="{Binding ProjectId}">
+                        Done
+                    </Hyperlink>
+                </TextBlock>
+            </StackPanel>
+        </DataTemplate>
+
+        <DataTemplate x:Key="normalProjectTemplate">
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="{Binding FullName}"/>
+                <TextBlock Margin="20, 0, 0, 0">
+                    <Hyperlink>Edit</Hyperlink>
+                </TextBlock>
+            </StackPanel>
+            
+        </DataTemplate>
+
+        <Style x:Key="projectsListStyle"
+               TargetType="ListBox">
+           
+            <Setter Property="ItemTemplate"
+                    Value="{StaticResource normalProjectTemplate}"/>
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding CurrentlyEditedProject.State}"
+                             Value="Edit">
+                    <Setter Property="ItemTemplate"
+                            Value="{StaticResource editProjectTemplate}"/>
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+        
+    </UserControl.Resources>
+    
+    <StackPanel Orientation="Vertical">
+        <Button Height="25"
+                Width="100"
+                Content="Add New Project"
+                Command="{Binding AddNewProject}"
+                HorizontalAlignment="Left"/>
+        <ListBox ItemsSource="{Binding SolutionProjects}" 
+                 SelectedItem="{Binding CurrentlySelectedProject}"
+                 ItemTemplate="{StaticResource projectTemplate}"/>
+    </StackPanel>
+</UserControl>

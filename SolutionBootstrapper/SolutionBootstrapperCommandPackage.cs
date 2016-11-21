@@ -48,7 +48,7 @@ namespace SolutionBootstrapper
         public const string PackageGuidString = "a96aa52f-0005-4f73-a78d-bfdb5f6ef9b6";
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="SolutionBootstrapperCommand"/> class.
+        /// Initializes a new instance of the <see cref="SolutionManagerCommand"/> class.
         /// </summary>
         public SolutionBootstrapperCommandPackage()
         {
@@ -66,7 +66,7 @@ namespace SolutionBootstrapper
         /// </summary>
         protected override void Initialize()
         {
-            SolutionBootstrapperCommand.Initialize(this);
+            SolutionManagerCommand.Initialize(this);
             base.Initialize();
         }
 

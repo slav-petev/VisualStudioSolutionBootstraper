@@ -22,7 +22,7 @@
 
   <!--The Commands section is where commands, menus, and menu groups are defined.
       This section uses a Guid to identify the package that provides the command defined inside it. -->
-  <Commands package="guidSolutionBootstrapperCommandPackage">
+  <Commands package="guidSolutionManagerCommandPackage">
     <!-- Inside this section we have different sub-sections: one for the menus, another
     for the menu groups, one for the buttons (the actual commands), one for the combos
     and the last one for the bitmaps used. Each element is identified by a command id that
@@ -36,21 +36,21 @@
          group as the part of a menu contained between two lines. The parent of a group
          must be a menu. -->
     <Menus>
-      <Menu guid="guidSolutionBootstrapperCommandPackageCmdSet" id="SolutionBootstrapper" priority="0x700" type="Menu">
+      <Menu guid="guidSolutionManagerCommandPackageCmdSet" id="SolutionManager" priority="0x700" type="Menu">
         <Parent guid="guidSHLMainMenu" id="IDG_VS_MM_TOOLSADDINS"/>
         <Strings>
           <ButtonText>Solution Bootstrapper</ButtonText>
-          <CommandName>Bootstrap Solution</CommandName>
+          <CommandName>Solution Manager</CommandName>
         </Strings>
       </Menu>
     </Menus>
       
     <Groups>
-      <Group guid="guidSolutionBootstrapperCommandPackageCmdSet" id="MyMenuGroup" priority="0x0600">
-        <Parent guid="guidSolutionBootstrapperCommandPackageCmdSet" id="SolutionBootstrapper"/>
+      <Group guid="guidSolutionManagerCommandPackageCmdSet" id="MyMenuGroup" priority="0x0600">
+        <Parent guid="guidSolutionManagerCommandPackageCmdSet" id="SolutionManager"/>
       </Group>
     </Groups>
-
+    
     <!--Buttons section. -->
     <!--This section defines the elements the user can interact with, like a menu command or a button
         or combo box in a toolbar. -->
@@ -62,11 +62,18 @@
               <CommandFlag>DefaultInvisible</CommandFlag>
               <CommandFlag>DynamicVisibility</CommandFlag>
           If you do not want an image next to your command, remove the Icon node /> -->
-      <Button guid="guidSolutionBootstrapperCommandPackageCmdSet" id="SolutionBootstrapperCommandId" priority="0x0100" type="Button">
-        <Parent guid="guidSolutionBootstrapperCommandPackageCmdSet" id="MyMenuGroup" />
+      <Button guid="guidSolutionManagerCommandPackageCmdSet" id="SolutionBootstrapperCommandId" priority="0x0100" type="Button">
+        <Parent guid="guidSolutionManagerCommandPackageCmdSet" id="MyMenuGroup" />
         <Icon guid="guidImages" id="bmpPic1" />
         <Strings>
           <ButtonText>Bootstrap Solution</ButtonText>
+        </Strings>
+      </Button>
+      <Button guid="guidSolutionManagerCommandPackageCmdSet" id="RenameInProjectAndFileNamesCommandId" priority="0x101" type="Button">
+        <Parent guid="guidSolutionManagerCommandPackageCmdSet" id="MyMenuGroup" />
+        <CommandFlag>DefaultDisabled</CommandFlag>
+        <Strings>
+          <ButtonText>Rename in Project and File names</ButtonText>
         </Strings>
       </Button>
     </Buttons>
@@ -84,13 +91,14 @@
 
   <Symbols>
     <!-- This is the package guid. -->
-    <GuidSymbol name="guidSolutionBootstrapperCommandPackage" value="{a96aa52f-0005-4f73-a78d-bfdb5f6ef9b6}" />
+    <GuidSymbol name="guidSolutionManagerCommandPackage" value="{a96aa52f-0005-4f73-a78d-bfdb5f6ef9b6}" />
 
     <!-- This is the guid used to group the menu commands together -->
-    <GuidSymbol name="guidSolutionBootstrapperCommandPackageCmdSet" value="{bf8be7d9-577e-42bf-9f1a-e6d473679c6d}">
+    <GuidSymbol name="guidSolutionManagerCommandPackageCmdSet" value="{bf8be7d9-577e-42bf-9f1a-e6d473679c6d}">
       <IDSymbol name="MyMenuGroup" value="0x1020" />
       <IDSymbol name="SolutionBootstrapperCommandId" value="0x0100" />
-      <IDSymbol name="SolutionBootstrapper" value="0x1021"/>
+      <IDSymbol name="RenameInProjectAndFileNamesCommandId" value="0x101"/>
+      <IDSymbol name="SolutionManager" value="0x1021"/>
     </GuidSymbol>
 
     <GuidSymbol name="guidImages" value="{93b6a4ea-a93a-41b3-bc62-06939d1303fc}" >
